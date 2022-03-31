@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- <link rel="stylesheet" href="index.css" > -->
+    <style>
+ 
+ body {
+    font-family:"Clear Sans", "Helvetica Neue", Arial, sans-serif;
+    color: black;
+    font-size: 35px;
+}
+
+ #failure-overlay {
+  position: fixed;
+  display: none;
+  margin: 25vh auto;
+  height: 220px;
+  width: 220px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 20;
+}
+
+#success-overlay {
+  position: fixed;
+  display: none;
+  margin: 25vh auto;
+  height: 220px;
+  width: 220px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 20;
+}
+
+ .game-over {
+   margin: 0 auto;
+ }
+
+ .button-house {
+    margin: 0 auto;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+ .undo-button {
+    margin: 0 auto;
+    border-radius: 3px;
+    width: 50px;
+    background-color: bisque;
+    cursor: pointer;
+}
+
+ .start-button {
+    margin: 0 auto;
+    border-radius: 3px;
+    width: 60px;
+    background-color: bisque;
+    cursor: pointer;
+ }
+
+.container {
+    margin: 25vh auto;
+    height: 220px;
+    width: 220px;
+    background-color: rgb(211, 136, 44);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 3px;
+}
+
+.grids-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
+.grids {
+    width: 50px;
+    height: 50px;
+    border-radius: 3px;
+    background-color: bisque;
+    font-weight: 700;
+}
+
+.gridNumber2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #8d8272;
+}
+
+.gridNumber4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #a8cd13;
+}
+
+.gridNumber8 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #a6c593;
+}
+
+.gridNumber16 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #fab5b0;
+}
+
+.gridNumber32 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #ba6bc6;
+}
+
+.gridNumber64 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #1d8f33;
+}
+
+.gridNumber128 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #2eaebe;
+    font-size: 25px;
+}
+
+.gridNumber256 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #945288;
+    font-size: 25px;
+}
+
+.gridNumber512 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #7521d4;
+    font-size: 25px;
+}
+
+.gridNumber1024 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #4ddeac;
+    font-size: 20px;
+}
+
+.gridNumber2048 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #234e6c;
+    font-size: 20px;
+}
+    </style>
+    <script defer src="./index.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <style>
+
+    </style>
+    <title>2048</title>
+  </head>
+  <body>
+    <div class="container" >
+      <div id="failure-overlay">
+        <div class="button-house">
+          Game over!
+          <button id="start-btn" class="start-button">Restart</button>
+        </div>
+      </div>
+      <div id="success-overlay">
+        <div class="button-house">
+          You've won!
+          <button id="restart-btn" class="start-button">Restart</button>
+        </div>
+      </div>
+      <div class="grids-container">
+        <div id="00" class="grids"></div>
+        <div id="01" class="grids"></div>
+        <div id="02" class="grids"></div>
+        <div id="03" class="grids"></div>
+      </div>
+      <div class="grids-container">
+        <div id="10" class="grids"></div>
+        <div id="11" class="grids"></div>
+        <div id="12" class="grids"></div>
+        <div id="13" class="grids"></div>
+      </div>
+      <div class="grids-container">
+        <div id="20" class="grids"></div>
+        <div id="21" class="grids"></div>
+        <div id="22" class="grids"></div>
+        <div id="23" class="grids"></div>
+      </div>
+      <div class="grids-container">
+        <div id="30" class="grids"></div>
+        <div id="31" class="grids"></div>
+        <div id="32" class="grids"></div>
+        <div id="33" class="grids"></div>
+      </div>
+    </div>
+    <div class="button-house">
+      <button id="undo-btn" class="undo-button">Undo</button>
+    </div>
+  </body>
+</html>
